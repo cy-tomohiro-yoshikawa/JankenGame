@@ -152,22 +152,9 @@ export default async function () {
     // });
 }
 
-function base()
+async function base()
 {
     var abi = [
-        {
-            "inputs": [],
-            "name": "findResult",
-            "outputs": [
-                {
-                    "internalType": "string[]",
-                    "name": "",
-                    "type": "string[]"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
         {
             "inputs": [
                 {
@@ -179,6 +166,38 @@ function base()
             "name": "findWalletAdressResult",
             "outputs": [],
             "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "int256",
+                    "name": "hand",
+                    "type": "int256"
+                }
+            ],
+            "name": "janken",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "findResult",
+            "outputs": [
+                {
+                    "internalType": "string[]",
+                    "name": "",
+                    "type": "string[]"
+                }
+            ],
+            "stateMutability": "view",
             "type": "function"
         },
         {
@@ -245,25 +264,6 @@ function base()
             "type": "function"
         },
         {
-            "inputs": [
-                {
-                    "internalType": "int256",
-                    "name": "hand",
-                    "type": "int256"
-                }
-            ],
-            "name": "janken",
-            "outputs": [
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                }
-            ],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
             "inputs": [],
             "name": "sender",
             "outputs": [
@@ -278,10 +278,14 @@ function base()
         }
     ];
   
-    var address = "0x871862dB7a01cC7e66fd9db0de30aB9b84375aA5"; //コントラクトアドレス
-    var account = "0xF8AEeAf2A2c10C00AaB4eedd2736651Ed1767312"; //ウォレットアドレス
+    var address = "0xDf8CaCD6526272e9522cC257faC1417B2A27783D"; //コントラクトアドレス
+    var account = "0xB72bb4f4A0A7aBb1Ff067255B7bB0cc6d71a5D8F"; //ウォレットアドレス
   
     const web3 = new Web3(Web3.givenProvider || "ws://localhost:7545");
+
+     const accounts = await ethereum.request({
+        method: 'eth_requestAccounts',
+      });
   
     return new web3.eth.Contract(abi, address);
 }
@@ -290,7 +294,7 @@ function base()
 export async function janken(hand)
 {
     const contract = base();
-    var account = "0xF8AEeAf2A2c10C00AaB4eedd2736651Ed1767312"; //ウォレットアドレス
+    var account = "0xB72bb4f4A0A7aBb1Ff067255B7bB0cc6d71a5D8F"; //ウォレットアドレス
 
     //じゃんけんの実行
     await contract.methods.janken(hand).send({ from: account });
@@ -300,7 +304,7 @@ export async function janken(hand)
 export async function getResultWalletadress(address)
 {
     const contract = base();
-    var account = "0xF8AEeAf2A2c10C00AaB4eedd2736651Ed1767312"; //ウォレットアドレス
+    var account = "0xB72bb4f4A0A7aBb1Ff067255B7bB0cc6d71a5D8F"; //ウォレットアドレス
 
     await contract.methods.findWalletAdressResult(address).send({ from: account });
 }
