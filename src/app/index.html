@@ -24,6 +24,7 @@
           <button id="connect-button">Connect MetaMask</button>
           <p>Wallet Address:<div id="address"></div></p>
           <p>Network:<div id="chain-id"></div></p>
+          <p>Balance:<div id="balance"></div></p>
         </div>
         <div class="play-janken-form">
           <form id="janken-form">
@@ -105,6 +106,11 @@
             const hexChainId = "0x" + chainId.toString(16);
             console.log(`Current chain ID is: ${hexChainId}`);
             document.getElementById('chain-id').textContent = hexChainId;
+
+            const balance = await web3.eth.getBalance(accounts[0]);
+            const balanceInEther = web3.utils.fromWei(balance, 'ether');
+            console.log(balanceInEther); // Ether単位の残高が出力される1
+            document.getElementById('balance').textContent = balanceInEther;
 
             // TODO: Add your code here to interact with Ethereum network
           }).catch(function(error) {
