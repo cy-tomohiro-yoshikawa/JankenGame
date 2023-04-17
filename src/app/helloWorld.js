@@ -152,7 +152,7 @@ export default async function () {
     // });
 }
 
-async function base()
+function base()
 {
     var abi = [
         {
@@ -279,22 +279,34 @@ async function base()
     ];
   
     var address = "0xDf8CaCD6526272e9522cC257faC1417B2A27783D"; //コントラクトアドレス
-    var account = "0xB72bb4f4A0A7aBb1Ff067255B7bB0cc6d71a5D8F"; //ウォレットアドレス
   
     const web3 = new Web3(Web3.givenProvider || "ws://localhost:7545");
-
-     const accounts = await ethereum.request({
-        method: 'eth_requestAccounts',
-      });
   
     return new web3.eth.Contract(abi, address);
+}
+
+export async function walletConect()
+{
+    const accounts = await ethereum.request({
+        method: 'eth_requestAccounts',
+      });
+
+    const account = accounts[0];
+    setWalletAddress(account);
 }
 
 //じゃんけんの実行
 export async function janken(hand)
 {
     const contract = base();
-    var account = "0xB72bb4f4A0A7aBb1Ff067255B7bB0cc6d71a5D8F"; //ウォレットアドレス
+
+    const accounts = await ethereum.request({
+        method: 'eth_requestAccounts',
+      });
+
+    const account = accounts[0];
+
+    console.log(account);
 
     //じゃんけんの実行
     await contract.methods.janken(hand).send({ from: account });
@@ -304,7 +316,12 @@ export async function janken(hand)
 export async function getResultWalletadress(address)
 {
     const contract = base();
-    var account = "0xB72bb4f4A0A7aBb1Ff067255B7bB0cc6d71a5D8F"; //ウォレットアドレス
+
+    const accounts = await ethereum.request({
+        method: 'eth_requestAccounts',
+      });
+
+    const account = accounts[0];
 
     await contract.methods.findWalletAdressResult(address).send({ from: account });
 }
@@ -321,6 +338,8 @@ export function getResultArray()
             console.log(err);
         }
     });
+
+    console.log(walletConect());
 }
 
 //結果の配列のwalletAddressをインデックス番号から取り出す
