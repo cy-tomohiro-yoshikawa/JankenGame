@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.content {
+    width: 375px;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+.play-janken-form {
+    margin-top: 16px;
+    font-size: 20px;
+}
+
+.select-bet {
+    margin-top: 16px;
+}
+.select-hand {
+    margin-top: 16px;
+}
+.play-btn {
+    margin: 16px 20% 0;
+    width: 60%;
+    height: 50px;
+}
