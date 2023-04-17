@@ -292,7 +292,6 @@ export async function walletConect()
       });
 
     const account = accounts[0];
-    setWalletAddress(account);
 }
 
 //じゃんけんの実行
@@ -330,10 +329,16 @@ export async function getResultWalletadress(address)
 export function getResultArray()
 {
     const contract = base();
+    var results = "";
 
     contract.methods.getResultArray().call(function(err,res){
         if(!err){
             console.log(res);
+            // 結果表示画面に一覧を表示表示させる
+            for (let i = 0; i < res.length; i++) {
+                results += res[i][1] + " : " + res[i][0] + "\n";
+            }
+            document.getElementById('log').textContent = results;
         } else {
             console.log(err);
         }
@@ -374,10 +379,16 @@ export function getResult(index)
 export function findResult()
 {
     const contract = base();
+    var results = "";
 
     contract.methods.findResult().call(function(err,res){
         if(!err){
             console.log(res);
+            // 結果表示画面に一覧を表示表示させる
+            for (let i = 0; i < res.length; i++) {
+                results += res[i] + "\n";
+            }
+            document.getElementById('log').textContent = results;
         } else {
             console.log(err);
         }
