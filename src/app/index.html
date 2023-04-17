@@ -24,7 +24,7 @@
           あなたのアドレスは: xxxx
         </div>
         <div class="play-janken-form">
-          <form>
+          <form id="janken-form">
             <div class="select-bet">
               <label for="">BETする額を指定してください</label>
               <div>
@@ -35,19 +35,19 @@
             <div class="select-hand">
               <label for="">あなたの出す手を選んでください</label>
               <div>
-                <input type="radio" name="hand" value="グー">グー
-                <input type="radio" name="hand" value="チョキ">チョキ
-                <input type="radio" name="hand" value="パー">パー
+                <input type="radio" name="hand" value="1">グー
+                <input type="radio" name="hand" value="2">チョキ
+                <input type="radio" name="hand" value="3">パー
               </div>
             </div>
             <div class="">
-              <button class="play-btn">じゃんけん実行！</button>
+              <button class="play-btn" onclick="janken(document.getElementById('janken-form').elements['hand'].value)">じゃんけん実行！</button>
             </div>
           </form>
         </div>
         <h2>履歴や情報の確認はこちら</h2>
         <button onclick="getResultArray()">全ての結果を取得</button>
-        <button onclick="">自分の結果を取得</button>
+        <button onclick="findResult()">自分の結果を取得</button>
   
         <!-- <h1>旧ボタン群</h1>
         <button onclick="janken(1)">グー</button>
