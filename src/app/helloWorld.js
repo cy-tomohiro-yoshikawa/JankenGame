@@ -278,10 +278,14 @@ function base()
         }
     ];
   
-    var address = "0x871862dB7a01cC7e66fd9db0de30aB9b84375aA5"; //コントラクトアドレス
-    var account = "0xF8AEeAf2A2c10C00AaB4eedd2736651Ed1767312"; //ウォレットアドレス
+    var address = "0xDf8CaCD6526272e9522cC257faC1417B2A27783D"; //コントラクトアドレス
+    var account = "0xA1589db84703375102a02ecc85DBb8cdd4Cf6242"; //ウォレットアドレス
   
     const web3 = new Web3(Web3.givenProvider || "ws://localhost:7545");
+
+    // const accounts = await ethereum.request({
+    //     method: 'eth_requestAccounts',
+    //   });
   
     return new web3.eth.Contract(abi, address);
 }
@@ -290,7 +294,7 @@ function base()
 export async function janken(hand)
 {
     const contract = base();
-    var account = "0xF8AEeAf2A2c10C00AaB4eedd2736651Ed1767312"; //ウォレットアドレス
+    var account = "0xA1589db84703375102a02ecc85DBb8cdd4Cf6242"; //ウォレットアドレス
 
     //じゃんけんの実行
     await contract.methods.janken(hand).send({ from: account });
@@ -300,7 +304,7 @@ export async function janken(hand)
 export async function getResultWalletadress(address)
 {
     const contract = base();
-    var account = "0xF8AEeAf2A2c10C00AaB4eedd2736651Ed1767312"; //ウォレットアドレス
+    var account = "0xA1589db84703375102a02ecc85DBb8cdd4Cf6242"; //ウォレットアドレス
 
     await contract.methods.findWalletAdressResult(address).send({ from: account });
 }
@@ -309,10 +313,16 @@ export async function getResultWalletadress(address)
 export function getResultArray()
 {
     const contract = base();
+    var results = "";
 
     contract.methods.getResultArray().call(function(err,res){
         if(!err){
             console.log(res);
+            // 結果表示画面に一覧を表示表示させる
+            for (let i = 0; i < res.length; i++) {
+                results += res[i][1] + " : " + res[i][0] + "\n";
+            }
+            document.getElementById('log').textContent = results;
         } else {
             console.log(err);
         }
@@ -351,10 +361,16 @@ export function getResult(index)
 export function findResult()
 {
     const contract = base();
+    var results = "";
 
     contract.methods.findResult().call(function(err,res){
         if(!err){
             console.log(res);
+            // 結果表示画面に一覧を表示表示させる
+            for (let i = 0; i < res.length; i++) {
+                results += res[i] + "\n";
+            }
+            document.getElementById('log').textContent = results;
         } else {
             console.log(err);
         }
