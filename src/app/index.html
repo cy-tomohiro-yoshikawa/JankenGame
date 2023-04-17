@@ -21,7 +21,8 @@
       <div class="content">
         <h1>じゃんけんゲーム</h1>
         <div class="user-info">
-          あなたのアドレスは: xxxx
+          <button id="connect-button">現在のアカウント情報を確認する</button>
+          <div id="address"></div>
         </div>
         <div class="play-janken-form">
           <form id="janken-form">
@@ -73,5 +74,34 @@
           <button onclick="findResult()">特定ウォレットアドレスの結果を取得</button> -->
       </div>
     </div>
+    <script>
+      window.ethereum.on('accountsChanged', function (accounts) {
+        // accounts[0]に新しいアドレスが入っています
+        console.log("アドレスが変更されました", accounts[0]);
+        document.getElementById('address').textContent = "現在のアカウントアドレス: " + accounts[0];
+      });
+
+      // Connect to MetaMask
+      document.getElementById('connect-button').addEventListener('click', function() {
+        // Check if MetaMask is installed
+        if (typeof window.ethereum !== 'undefined') {
+          console.log('MetaMask is installed.');
+          // Request accounts
+          window.ethereum.request({ method: 'eth_requestAccounts' }).then(function(accounts) {
+            // Web3 object
+            var web3 = new Web3(window.ethereum);
+            console.log('Connected to MetaMask:', accounts[0]);
+            document.getElementById('address').textContent = "現在のアカウントアドレス: " + accounts[0];
+
+            // TODO: Add your code here to interact with Ethereum network
+          }).catch(function(error) {
+            // Handle request error
+            console.error('Error requesting accounts:', error);
+          });
+        } else {
+          console.log('MetaMask is not installed.');
+        }
+      });
+    </script>
   </body>
 </html>
