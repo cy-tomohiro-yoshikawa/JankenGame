@@ -67,6 +67,7 @@
     </div>
     <script type="module">
       import { getContract } from "./janken.js";
+      import {openJankenModal, openResultModal, closeModal} from './modal.js';
 
       // ウォレットアドレスの切り替えを検知する
       window.ethereum.on('accountsChanged', function (accounts) {
@@ -91,6 +92,10 @@
         // イベントが発生した
         console.log('New event:', event);
         openResultModal();
+      }).on('changed', (event) => {
+        // キャンセルされた
+        console.log('changed:', event);
+        closeModal();
       }).on('error', (error) => {
         // エラーが発生した
         console.error('Error:', error);

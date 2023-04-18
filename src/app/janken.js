@@ -180,7 +180,11 @@ export async function janken(hand)
     console.log(account);
 
     //じゃんけんの実行
-    await contract.methods.playJanken(hand).send({ from: account });
+    await contract.methods.playJanken(hand).send({ from: account })
+        .on('error', function(error){
+            // エラーが発生した
+            console.log('error - playJanken:'+error.message);
+        });
 }
 
 //特定のウォレットアドレスの結果だけ取得する
