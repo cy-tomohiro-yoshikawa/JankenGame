@@ -420,3 +420,9 @@ export function findResult()
         }
     });
 }
+
+// 
+export function getContract()
+{
+    return base();
+}
