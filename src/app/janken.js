@@ -166,6 +166,9 @@ export async function walletConect()
     const account = accounts[0];
 }
 
+
+import {openJankenModal, openResultModal, closeModal} from './modal.js';
+
 //じゃんけんの実行
 export async function janken(hand)
 {
@@ -184,6 +187,7 @@ export async function janken(hand)
         .on('error', function(error){
             // エラーが発生した
             console.log('error - playJanken:'+error.message);
+            closeModal();
         });
 }
 
