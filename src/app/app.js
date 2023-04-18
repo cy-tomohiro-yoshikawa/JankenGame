@@ -1,5 +1,5 @@
-import helloWorld from "./helloWorld.js";
+import janken from "./janken.js";
 
 window.onload = function () {
-  helloWorld();
+  janken();
 };

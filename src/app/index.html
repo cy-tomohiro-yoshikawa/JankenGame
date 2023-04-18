@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja">
   <head>
-    <title>Ðapps - Hello World</title>
+    <title>Ðapps -  JankenGame</title>
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-    <script type="module" src="app.js"></script>
-    <script type="module" src="helloWorld.js"></script>
+    <!-- <script type="module" src="app.js"></script> -->
+    <script type="module" src="janken.js"></script>
     <link rel="stylesheet" href="index.css">
     <script type="module">
-      import {janken, getResultArray, getAdress, getResult, getResultWalletadress, findResult} from './helloWorld.js';
+      import {janken, getResultArray, getAdress, getResult, getResultWalletadress, findResult} from './janken.js';
       window.janken = janken;
       window.getResultArray = getResultArray;
       window.getAdress = getAdress;
@@ -50,32 +50,10 @@
         <button onclick="getResultArray()">全ての結果を取得</button>
         <!-- <button onclick="findResult()">自分の結果を取得</button> -->
         <div id="log" class="log"></div>
-  
-        <!-- <h1>旧ボタン群</h1>
-        <button onclick="janken(1)">グー</button>
-        <button onclick="janken(2)">チョキ</button>
-        <button onclick="janken(3)">パー</button>
-  
-        <button onclick="getResultArray()">全ての結果を取得</button>
-  
-        <form>
-          <input type="number" name="a" value="0">
-          <input type="button" value="getAdress" onclick='getAdress(a.value)'>
-          </form>
-          <form>
-            <input type="number" name="b" value="0">
-            <input type="button" value="getResult" onclick='getResult(b.value)'>
-          </form>
-          <form>
-            <input type="text" name="walletadress">
-            <input type="button" value="getResultWalletadress" onclick='getResultWalletadress(walletadress.value)'>
-          </form>
-      
-          <button onclick="findResult()">特定ウォレットアドレスの結果を取得</button> -->
       </div>
     </div>
     <script type="module">
-      import { getContract } from "./helloWorld.js";
+      import { getContract } from "./janken.js";
 
       // ウォレットアドレスの切り替えを検知する
       window.ethereum.on('accountsChanged', function (accounts) {
