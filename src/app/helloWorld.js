@@ -169,6 +169,19 @@ function base()
             "type": "function"
         },
         {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "string",
+                    "name": "result",
+                    "type": "string"
+                }
+            ],
+            "name": "FunctionCompleted",
+            "type": "event"
+        },
+        {
             "inputs": [
                 {
                     "internalType": "int256",
@@ -184,6 +197,19 @@ function base()
                     "type": "string"
                 }
             ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "int256",
+                    "name": "hand",
+                    "type": "int256"
+                }
+            ],
+            "name": "playJanken",
+            "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
         },
@@ -278,7 +304,7 @@ function base()
         }
     ];
   
-    var address = "0xDf8CaCD6526272e9522cC257faC1417B2A27783D"; //コントラクトアドレス
+    var address = "0x40D17270eE45695DDd557853b15EFe5a5b32791d"; //コントラクトアドレス
   
     const web3 = new Web3(Web3.givenProvider || "ws://localhost:7545");
   
@@ -308,7 +334,7 @@ export async function janken(hand)
     console.log(account);
 
     //じゃんけんの実行
-    await contract.methods.janken(hand).send({ from: account });
+    await contract.methods.playJanken(hand).send({ from: account });
 }
 
 //特定のウォレットアドレスの結果だけ取得する
