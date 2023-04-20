@@ -149,12 +149,17 @@ function contractInfo()
             "type": "function"
         }
     ];
+
+    // 実行するコントラクトのアドレス
+    const contractAddress_for_ganache = '0xFE87fa15f4a5A934BE29F63679Cf46447Cab****';
+    const contractAddress_for_goerli = '0x40D17270eE45695DDd557853b15EFe5a5b32791d';
   
-    var address = "0x40D17270eE45695DDd557853b15EFe5a5b32791d"; //コントラクトアドレス
+    // 実際に使用されるコントラクトのアドレス
+    const contractaddress = "0x40D17270eE45695DDd557853b15EFe5a5b32791d";
   
     const web3 = new Web3(Web3.givenProvider || "ws://localhost:7545");
   
-    return new web3.eth.Contract(abi, address);
+    return new web3.eth.Contract(abi, contractaddress);
 }
 
 export async function walletConect()
@@ -183,12 +188,15 @@ export async function janken(hand)
     console.log(account);
 
     //じゃんけんの実行
-    await contract.methods.playJanken(hand).send({ from: account })
+    const transaction = await contract.methods.playJanken(hand).send({ from: account })
         .on('error', function(error){
             // エラーが発生した
             console.log('error - playJanken:'+error.message);
             closeModal();
         });
+
+    //ブロックナンバー取得    
+    console.log(transaction.blockNumber);
 }
 
 //特定のウォレットアドレスの結果だけ取得する
