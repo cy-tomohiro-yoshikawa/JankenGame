@@ -15,38 +15,6 @@ function contractInfo()
             "type": "event"
         },
         {
-            "inputs": [
-                {
-                    "internalType": "int256",
-                    "name": "hand",
-                    "type": "int256"
-                }
-            ],
-            "name": "janken",
-            "outputs": [
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                }
-            ],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "int256",
-                    "name": "hand",
-                    "type": "int256"
-                }
-            ],
-            "name": "playJanken",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
             "inputs": [],
             "name": "findResult",
             "outputs": [
@@ -90,6 +58,38 @@ function contractInfo()
             "type": "function"
         },
         {
+            "inputs": [
+                {
+                    "internalType": "int256",
+                    "name": "hand",
+                    "type": "int256"
+                }
+            ],
+            "name": "janken",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "int256",
+                    "name": "hand",
+                    "type": "int256"
+                }
+            ],
+            "name": "playJanken",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
             "inputs": [],
             "name": "sender",
             "outputs": [
@@ -106,10 +106,10 @@ function contractInfo()
 
     // 実行するコントラクトのアドレス
     const contractAddress_for_ganache = '0xFE87fa15f4a5A934BE29F63679Cf46447Cab****';
-    const contractAddress_for_goerli = '0x5B7Bc4Fb94f1F2521FadB07387d1A94C4DD170D1';
+    const contractAddress_for_goerli = '0x760531aD14d62A8203abC9b1796DA1aDAE68cA16';
   
     // 実際に使用されるコントラクトのアドレス
-    const contractaddress = "0x5B7Bc4Fb94f1F2521FadB07387d1A94C4DD170D1";
+    const contractaddress = "0x760531aD14d62A8203abC9b1796DA1aDAE68cA16";
   
     const web3 = new Web3(Web3.givenProvider || "ws://localhost:7545");
   

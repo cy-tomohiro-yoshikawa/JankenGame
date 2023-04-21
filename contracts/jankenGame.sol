@@ -6,8 +6,8 @@ contract Janken{
 
     //じゃんけんの結果を保存する構造体
     struct Result{ 
-    int myHand; //0:グー、1:チョキ、2:パー
-    uint256 opponentHand; //0:グー、1:チョキ、2:パー
+    int myHand; //1:グー、2:チョキ、3:パー
+    uint256 opponentHand; //1:グー、2:チョキ、3:パー
     int result;  //0:あいこ、1:勝ち、2:負け
     }
 
@@ -25,17 +25,17 @@ contract Janken{
         sender = msg.sender;
 
         //乱数生成
-        uint256 rd = uint(keccak256(abi.encodePacked(blockhash(block.number - 1), msg.sender, block.timestamp))) % 3;
+        uint256 rd = (uint(keccak256(abi.encodePacked(blockhash(block.number - 1), msg.sender, block.timestamp))) % 3) + 1;
 
         //結果の保存
-        if(hand == 0) //グー
+        if(hand == 1) //グー
         {
-            if(rd == 0) //グー、あいこ
+            if(rd == 1) //グー、あいこ
             {
                 Result memory result = Result(hand,rd,0);
                 results.push(result);
             }
-            else if(rd == 1) //チョキ、勝ち
+            else if(rd == 2) //チョキ、勝ち
             {
                 Result memory result = Result(hand,rd,1);
                 results.push(result);
@@ -46,14 +46,14 @@ contract Janken{
                 results.push(result);
             }
         }
-        else if(hand == 1) //チョキ
+        else if(hand == 2) //チョキ
         {
-            if(rd == 0) //グー、負け
+            if(rd == 1) //グー、負け
             {
                 Result memory result = Result(hand,rd,2);
                 results.push(result);
             }
-            else if(rd == 1) //チョキ、あいこ
+            else if(rd == 2) //チョキ、あいこ
             {
                 Result memory result = Result(hand,rd,0);
                 results.push(result);
@@ -64,14 +64,14 @@ contract Janken{
                 results.push(result);
             }
         }
-        else if(hand == 2) //パー
+        else if(hand == 3) //パー
         {
-            if(rd == 0) //グー、勝ち
+            if(rd == 1) //グー、勝ち
             {
                 Result memory result = Result(hand,rd,1);
                 results.push(result);
             }
-            else if(rd == 1) //チョキ、負け
+            else if(rd == 2) //チョキ、負け
             {
                 Result memory result = Result(hand,rd,2);
                 results.push(result);
