@@ -2,19 +2,6 @@ function contractInfo()
 {
     var abi = [
         {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "walletAdress",
-                    "type": "address"
-                }
-            ],
-            "name": "findWalletAdressResult",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
             "anonymous": false,
             "inputs": [
                 {
@@ -73,58 +60,25 @@ function contractInfo()
             "type": "function"
         },
         {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "i",
-                    "type": "uint256"
-                }
-            ],
-            "name": "getAdress",
-            "outputs": [
-                {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "i",
-                    "type": "uint256"
-                }
-            ],
-            "name": "getResult",
-            "outputs": [
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
             "inputs": [],
             "name": "getResultArray",
             "outputs": [
                 {
                     "components": [
                         {
-                            "internalType": "address",
-                            "name": "walletAddress",
-                            "type": "address"
+                            "internalType": "int256",
+                            "name": "myHand",
+                            "type": "int256"
                         },
                         {
-                            "internalType": "string",
+                            "internalType": "uint256",
+                            "name": "opponentHand",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "int256",
                             "name": "result",
-                            "type": "string"
+                            "type": "int256"
                         }
                     ],
                     "internalType": "struct Janken.Result[]",
@@ -152,10 +106,10 @@ function contractInfo()
 
     // 実行するコントラクトのアドレス
     const contractAddress_for_ganache = '0xFE87fa15f4a5A934BE29F63679Cf46447Cab****';
-    const contractAddress_for_goerli = '0x40D17270eE45695DDd557853b15EFe5a5b32791d';
+    const contractAddress_for_goerli = '0x5B7Bc4Fb94f1F2521FadB07387d1A94C4DD170D1';
   
     // 実際に使用されるコントラクトのアドレス
-    const contractaddress = "0x40D17270eE45695DDd557853b15EFe5a5b32791d";
+    const contractaddress = "0x5B7Bc4Fb94f1F2521FadB07387d1A94C4DD170D1";
   
     const web3 = new Web3(Web3.givenProvider || "ws://localhost:7545");
   
